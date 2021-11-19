@@ -122,3 +122,4 @@ Received Import Request.
 Start importing Assets/PineCone/Examples/Scenes using Guid(56051e98925dcfb409f84fc605135664) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '835f5def7c35807f70a229a206455a46') in 0.001599 seconds
   Import took 0.003313 seconds .
 
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
