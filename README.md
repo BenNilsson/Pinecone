@@ -14,9 +14,6 @@
 # Architecture
 Pinecone is set up with the Server & Client in one project in order to speed up the development process and productivity.
 
-# Installation
-Provide info on how to install it!
-
 # Getting Started
 Pinecone was made for Unity 2021. Simply clone this repo and install it to your project.
 
