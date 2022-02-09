@@ -1,5 +1,8 @@
 # Pinecone
 [![Documentation](https://img.shields.io/badge/docs-brightgreen.svg)](https://app.gitbook.com/s/OmVlK6RcD3P9iXnbJfnZ/)
+[![Video Tutorials](https://img.shields.io/badge/video_tutorial-brightgreen.svg)](https://www.youtube.com/c/KotieDev)
+[![release](https://img.shields.io/badge/release-1.0-brightgreen)](https://github.com/BenNilsson/PineCone/releases)
+[![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://github.com/BenNilsson/PineCone/blob/main/LICENSE)
 
 <div align="center">
   <a href="https://github.com/BenNilsson/PineCone">
