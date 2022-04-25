@@ -8,9 +8,6 @@ public partial class CameraController : NetworkBehaviour
     public Transform cameraPos;
     [SerializeField] private float mouseSensitivity = 1f;
     private float cameraPitch = 0.0f;
-    private NetworkManagerControlsHUD networkControlsHud;
-    private Transform killFeed;
-    private Transform crosshair;
 
     public override void OnStart()
     {
@@ -21,9 +18,6 @@ public partial class CameraController : NetworkBehaviour
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        networkControlsHud = NetworkManager.Singleton.GetComponent<NetworkManagerControlsHUD>();
-        crosshair = GameObject.Find("crosshair").transform;
-        killFeed = GameObject.Find("Killfeed").transform;
     }
 
     public void SetRotation(Quaternion rotation)
@@ -60,9 +54,6 @@ public partial class CameraController : NetworkBehaviour
 
         transform.Rotate(Vector3.up * (mouseDelta.x * mouseSensitivity));
     }
-
-    private CameraClearFlags internalFlags;
-    private int cullingMask;
 
     public void StartFreezeCam(Vector3 theirPos, FreezeCam freezeCam)
     {
