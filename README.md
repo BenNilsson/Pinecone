@@ -22,8 +22,5 @@ Pinecone was made for Unity 2021. Simply clone this repo and install it to your 
 
 Check out the **[Documentation](https://ben-nilsson.gitbook.io/pinecone-documentation/)** to learn more.
 
-# Low-Level Transports
-- [PineconeUDP](linkToTransport) (built in)
-
 # Credits
 This project was created by Benjamin Nilsson as a university project for the module Games Technology Research Project.
