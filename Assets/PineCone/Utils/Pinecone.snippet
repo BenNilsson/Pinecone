@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>PineconeNetSync</Title>    
+            <Author>BenjaminNilsson</Author>
+            <Description>Adds a quick way to generate NetworkSyncs for Pinecone projects</Description>
+            <Shortcut>netsync</Shortcut> 
+        </Header>
+        <Snippet>
+            <Code Language="CSharp">
+                <![CDATA[[NetworkSync]
+                private $VariableType$ $varName$;
+
+                public $VariableType$ $PropertyName$
+                {
+                    get { return $varName$; }
+                    set { $varName$ = value; NotifyPropertyChanged(); }
+                }]]>
+            </Code>
+            <Declarations>
+            <Literal>
+                <ID>varName</ID>
+                <ToolTip>Name of backing property</ToolTip>
+                <Default>myVar</Default>
+            </Literal>
+            <Literal>
+                <ID>PropertyName</ID>
+                <ToolTip>Name of Property</ToolTip>
+                <Default>MyProperty</Default>
+            </Literal>
+            <Literal>
+                <ID>VariableType</ID>
+                <ToolTip>Type of variable</ToolTip>
+                <Default>int</Default>
+            </Literal>
+            </Declarations>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>
