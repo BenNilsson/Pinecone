@@ -137,7 +137,6 @@ namespace Pinecone
             activeTransport.OnClientConnected += ClientConnected;
             activeTransport.OnClientDisconnected += ClientDisconnected;
             activeTransport.OnClientConnectedServer += ClientConnectedServer;
-            activeTransport.OnClientDisconnectedServer += ClientDisconnectedServer;
 
             OnServerStart();
         }
@@ -153,7 +152,6 @@ namespace Pinecone
             activeTransport.OnClientConnected -= ClientConnected;
             activeTransport.OnClientDisconnected -= ClientDisconnected;
             activeTransport.OnClientConnectedServer -= ClientConnectedServer;
-            activeTransport.OnClientDisconnectedServer -= ClientDisconnectedServer;
 
             NetworkServer.DisconnectAllClients();
             NetworkServer.StopServer();
@@ -212,7 +210,7 @@ namespace Pinecone
         }
 
         /// <summary>
-        /// Called on the server when a client has disconnected.
+        /// Called on the client when a client has disconnected.
         /// </summary>
         public virtual void ClientDisconnected()
         {

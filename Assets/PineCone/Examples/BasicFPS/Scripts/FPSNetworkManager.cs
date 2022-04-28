@@ -87,10 +87,11 @@ public class FPSNetworkManager : NetworkManager
             playerColors.Add(usedColors[connectionId]);
             usedColors.Remove(connectionId);
 
-            if (NetworkServer.Connections.Count > 0)
-            {
-                NetworkServer.Connections[0].PlayerObject.GetComponent<Player>()?.ServerRemoveScoreboardElement(color.colorName);
-            }
+            PlayerConnection playerConnection = NetworkServer.Connections.Find(x => x.ConnectionId == connectionId);
+            if (playerConnection == null)
+                return;
+
+            playerConnection.PlayerObject.GetComponent<Player>()?.ServerRemoveScoreboardElement(color.colorName);
         }
     }
 }

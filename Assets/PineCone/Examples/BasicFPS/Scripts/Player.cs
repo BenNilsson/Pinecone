@@ -55,6 +55,7 @@ public partial class Player : NetworkBehaviour
 
         if (!NetworkClient.IsHost)
         {
+            this.playerColor = new PlayerColor(playerColor, colorName);
             gun.gunReadyColor = playerColor;
             foreach (var renderer in suitRenderers)
             {
@@ -66,11 +67,6 @@ public partial class Player : NetworkBehaviour
     public void ServerRemoveScoreboardElement(string colorName)
     {
         Generated.RpcRemoveScoreboardElement(this, colorName);
-
-        if (!NetworkClient.IsHost)
-        {
-            scoreboardUI.RemovePlayer(colorName);
-        }
     }
 
     [NetworkRPC]
@@ -82,11 +78,6 @@ public partial class Player : NetworkBehaviour
     public void ServerAddScoreboardElement(Player player)
     {
         Generated.RpcAddScoreboardElement(this, player.NetworkObject.NetworkObjectID);
-
-        if (!NetworkClient.IsHost)
-        {
-            scoreboardUI.AddPlayer(player);
-        }
     }
 
     [NetworkRPC]

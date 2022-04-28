@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Pinecone;
 
@@ -8,7 +6,7 @@ public partial class Ball : NetworkBehaviour
 {
     [SerializeField] private float speed = 30;
 
-    private Rigidbody2D rigidbody2d;
+    public Rigidbody2D rigidbody2d;
 
     private void Awake()
     {
@@ -17,8 +15,11 @@ public partial class Ball : NetworkBehaviour
 
     public override void OnStart()
     {
-        if (HasAuthority)
-            rigidbody2d.simulated = true;
+        if (!HasAuthority)
+        {
+            rigidbody2d.simulated = false;
+            return;
+        }
     }
 
     /// <summary>

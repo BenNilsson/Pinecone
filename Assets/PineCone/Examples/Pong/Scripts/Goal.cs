@@ -4,6 +4,7 @@ using Pinecone;
 public partial class Goal : NetworkBehaviour
 {
     [SerializeField] private int goalIndex;
+    [SerializeField] private GameLogic gameLogic;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -15,6 +16,6 @@ public partial class Goal : NetworkBehaviour
         if (collision.gameObject == null || !collision.gameObject.name.Contains("Ball"))
             return;
 
-        GameManager.TriggerOnGoal(goalIndex);
+        gameLogic.ServerIncrementScore(goalIndex);
     }
 }

@@ -101,7 +101,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cced701fd486f5343ab4245c6c349a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _networkBehaviours: []
+  _networkBehaviours:
+  - {fileID: 1519722965}
+  - {fileID: 1415988220905754220}
   NetworkObjectID: 9ebcdba7-686a-441f-b023-3f8356ffab2b
   DefaultNetworkBehaviour: {fileID: 1519722965}
 --- !u!114 &1519722965
@@ -159,6 +161,7 @@ MonoBehaviour:
   interpolateRotation: 0
   interpolateScale: 0
   minimumMovementRequiredForPacket: 0.05
+  teleportRadius: 5
 --- !u!61 &7250074180771805571
 BoxCollider2D:
   m_ObjectHideFlags: 0

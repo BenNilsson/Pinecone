@@ -1,53 +1,60 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Pinecone;
 
 public partial class GameLogic : NetworkBehaviour
 {
-    public GameManager gameManager;
+    public PongNetworkManager gameManager;
+    public Ball spawnedBall;
 
-    public void CallGeneratedGoalRPC(int scoredIndex)
+    [NetworkSync]
+    public int Player1Score;
+    [NetworkSync]
+    public int Player2Score;
+
+    public void ServerIncrementScore(int playerIndex)
     {
-        Generated.RPCGoalScored(this, scoredIndex);
+        spawnedBall.transform.position = new Vector3(0, 100);
+
+        if (playerIndex == 0)
+            Player1ScoreGenerated++;
+        else if (playerIndex == 1)
+            Player2ScoreGenerated++;
+
+        if (Player1Score >= 5 || Player2Score >= 5)
+        {
+            CallGeneratedPlayerWonRPC(Player1Score == 5 ? 0 : 1);
+        }
+
+        Generated.RPCGoalScored(this);
+        Invoke(nameof(ServerResetGame), 2f);
+    }
+
+    public void ServerResetGame()
+    {
+        spawnedBall.transform.position = Vector3.zero;
+        spawnedBall.StartMovingBall();
+    }
+
+    [NetworkRPC]
+    public void RPCGoalScored()
+    {
+        PongNetworkManager.TriggerGoalScored();
     }
 
     public void CallGeneratedPlayerWonRPC(int playerIndex)
     {
+        // Reset Scores
+        Player1ScoreGenerated = 0;
+        Player2ScoreGenerated = 0;
+
         Generated.RPCPlayerWon(this, playerIndex);
-    }
-
-    public void CallGeneratedGameResetRPC()
-    {
-        Generated.RPCGameReset(this);
-    }
-
-    [NetworkRPC]
-    public void RPCGoalScored(int scoredIndex)
-    {
-        if (scoredIndex == 0)
-            gameManager.ScorePlayer1++;
-        else if (scoredIndex == 1)
-            gameManager.ScorePlayer2++;
-
-        GameManager.TriggerOnGoal(scoredIndex);
     }
 
     [NetworkRPC]
     public void RPCPlayerWon(int playerIndex)
     {
-        gameManager.ScorePlayer1 = 0;
-        gameManager.ScorePlayer2 = 0;
+        spawnedBall.transform.position = new Vector3(0, 100);
 
-        GameManager.TriggerPlayerWon(playerIndex);
-    }
-
-    [NetworkRPC]
-    public void RPCGameReset()
-    {
-        gameManager.ScorePlayer1 = 0;
-        gameManager.ScorePlayer2 = 0;
-
-        GameManager.TriggerGameReset();
+        PongNetworkManager.TriggerPlayerWon(playerIndex);
     }
 }

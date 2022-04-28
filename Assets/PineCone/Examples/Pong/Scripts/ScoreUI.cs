@@ -1,9 +1,10 @@
 using UnityEngine;
 using TMPro;
-using System;
+using System.ComponentModel;
 
 public class ScoreUI : MonoBehaviour
 {
+    [SerializeField] private GameLogic gameLogic;
     [SerializeField] TextMeshProUGUI goalText;
     [SerializeField] private int playerIndex;
 
@@ -11,14 +12,19 @@ public class ScoreUI : MonoBehaviour
 
     private void OnEnable()
     {
-        GameManager.OnGoal += GoalScored;
-        GameManager.OnPlayerWon += PlayerWon;
+        gameLogic.OnSyncVarValueChanged += ScoreValueChanged;
+        PongNetworkManager.OnPlayerWon += PlayerWon;
     }
 
     private void OnDisable()
     {
-        GameManager.OnGoal -= GoalScored;
-        GameManager.OnPlayerWon -= PlayerWon;
+        gameLogic.OnSyncVarValueChanged -= ScoreValueChanged;
+        PongNetworkManager.OnPlayerWon -= PlayerWon;
+    }
+
+    private void ScoreValueChanged(object sender, PropertyChangedEventArgs e)
+    {
+        GoalScored(e.PropertyName == "Player1Score" ? 0 : 1);
     }
 
     private void PlayerWon(int player)

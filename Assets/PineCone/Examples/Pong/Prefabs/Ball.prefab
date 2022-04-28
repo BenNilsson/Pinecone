@@ -101,7 +101,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cced701fd486f5343ab4245c6c349a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _networkBehaviours: []
+  _networkBehaviours:
+  - {fileID: 7490008809583549232}
+  - {fileID: 3956395161638973597}
   NetworkObjectID: d0d9f1c5-c064-4084-8414-ac048aace160
   DefaultNetworkBehaviour: {fileID: 7490008809583549232}
 --- !u!114 &7490008809583549232
@@ -126,7 +128,7 @@ Rigidbody2D:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7933922011621941150}
   m_BodyType: 0
-  m_Simulated: 0
+  m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
@@ -157,6 +159,8 @@ MonoBehaviour:
   interpolatePosition: 1
   interpolateRotation: 0
   interpolateScale: 0
+  minimumMovementRequiredForPacket: 0.1
+  teleportRadius: 5
 --- !u!61 &4170391184969576692
 BoxCollider2D:
   m_ObjectHideFlags: 0

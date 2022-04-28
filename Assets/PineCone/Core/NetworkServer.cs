@@ -136,7 +136,7 @@ namespace Pinecone
                 spawnedNetworkObject.NetworkOwnerID = clientWithAuthority.OwningID;
             }
 
-            if (!NetworkClient.IsHost)
+            if (!NetworkClient.IsHost || serverAuthority)
             {
                 networkObject.OnStart();
             }
@@ -227,7 +227,7 @@ namespace Pinecone
             }
 
             // Destroy on server
-            if (!NetworkClient.IsHost)
+            if (!NetworkClient.IsHost || serverAuthority)
                 GameObject.Destroy(gameObject);
 
             // Let others know to destroy it. Keep in mind, some clients may not actually have this object
@@ -430,6 +430,9 @@ namespace Pinecone
             PlayerConnection playerConnection = Connections.Find(x => x.ConnectionId == connectionId);
             if (playerConnection == null)
                 return;
+
+            // Inform NetworkManager that the client has disconnected (before we destroy the object so that RPCs can be sent)
+            NetworkManager.Singleton.ClientDisconnectedServer(connectionId);
 
             string[] objectIdsOwnedByClient = playerConnection.PlayerOwnedObjects.Keys.ToArray();
             dynamic[] parameters = MessageSendHelper.CreateDynamicList(objectIdsOwnedByClient);

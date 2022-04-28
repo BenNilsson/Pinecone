@@ -233,6 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goalIndex: 0
+  gameLogic: {fileID: 654325318}
 --- !u!114 &86439525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,8 +345,6 @@ GameObject:
   - component: {fileID: 361997767}
   - component: {fileID: 361997770}
   - component: {fileID: 361997769}
-  - component: {fileID: 361997772}
-  - component: {fileID: 361997773}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -389,7 +388,7 @@ MonoBehaviour:
   spawnableObjects:
   - {fileID: 515606612873309961, guid: 457c5c0244fd20e44a52db7136371ac1, type: 3}
   - {fileID: 7933922011621941150, guid: f96297871d1736f4ba1fa8f47ee0a7db, type: 3}
-  - {fileID: 8991312826719640328, guid: ffc23da1ffddfc04eaab2825827c7a11, type: 3}
+  - {fileID: 408954087}
   ball: {fileID: 7933922011621941150, guid: f96297871d1736f4ba1fa8f47ee0a7db, type: 3}
   spawnPositions:
   - {x: -7, y: 0, z: 0}
@@ -425,33 +424,11 @@ MonoBehaviour:
   port: 7777
   sendTimeout: 5000
   receiveTimeout: 30000
---- !u!114 &361997772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+--- !u!1 &408954087 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8991312826719640328, guid: ffc23da1ffddfc04eaab2825827c7a11, type: 3}
+  m_PrefabInstance: {fileID: 8991312826132442445}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 361997765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cced701fd486f5343ab4245c6c349a76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _networkBehaviours: []
-  NetworkObjectID: 00000000-0000-0000-0000-000000000000
-  DefaultNetworkBehaviour: {fileID: 654325318}
---- !u!114 &361997773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 361997765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4ca8cce529b830448baa7412ee3d50b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &580462083
 GameObject:
   m_ObjectHideFlags: 0
@@ -606,7 +583,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8991312826719640331, guid: ffc23da1ffddfc04eaab2825827c7a11, type: 3}
   m_PrefabInstance: {fileID: 8991312826132442445}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 408954087}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 530df96ff05ec1f4f8ff2d3ac80c7ddf, type: 3}
@@ -846,6 +823,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goalIndex: 1
+  gameLogic: {fileID: 654325318}
 --- !u!114 &1238965116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1170,6 +1148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9c7a7fde93d29142ae4cdf2782cd547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameLogic: {fileID: 654325318}
   goalText: {fileID: 1858846205}
   playerIndex: 0
 --- !u!1 &1923227681
@@ -1546,6 +1525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9c7a7fde93d29142ae4cdf2782cd547, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameLogic: {fileID: 654325318}
   goalText: {fileID: 2047968801}
   playerIndex: 1
 --- !u!1001 &8991312826132442445
@@ -1603,6 +1583,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameLogic
       objectReference: {fileID: 0}
+    - target: {fileID: 8991312826719640330, guid: ffc23da1ffddfc04eaab2825827c7a11, type: 3}
+      propertyPath: _networkBehaviours.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8991312826719640330, guid: ffc23da1ffddfc04eaab2825827c7a11, type: 3}
+      propertyPath: _networkBehaviours.Array.data[0]
+      value: 
+      objectReference: {fileID: 654325318}
     - target: {fileID: 8991312826719640331, guid: ffc23da1ffddfc04eaab2825827c7a11, type: 3}
       propertyPath: gameManager
       value: 

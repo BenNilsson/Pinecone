@@ -1,5 +1,6 @@
 using UnityEngine;
 using Pinecone;
+using System;
 
 public partial class Racket : NetworkBehaviour
 {
@@ -14,7 +15,7 @@ public partial class Racket : NetworkBehaviour
             return;
 
         defaultPosition = transform.position;
-        GameManager.OnGoal += ResetPosition;
+        PongNetworkManager.OnGoalScored += ResetPosition;
     }
 
     private void OnDestroy()
@@ -22,10 +23,10 @@ public partial class Racket : NetworkBehaviour
         if (!HasAuthority)
             return;
 
-        GameManager.OnGoal -= ResetPosition;
+        PongNetworkManager.OnGoalScored -= ResetPosition;
     }
 
-    private void ResetPosition(int goalIndex)
+    private void ResetPosition()
     {
         transform.position = defaultPosition;
     }
