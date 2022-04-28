@@ -29,6 +29,7 @@ public partial class GameManager : NetworkManager
 
     public override void OnServerStart()
     {
+        base.OnServerStart();
         OnGoal += GoalScored;
     }
 
