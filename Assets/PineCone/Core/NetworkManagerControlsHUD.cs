@@ -12,16 +12,18 @@ namespace Pinecone
         private NetworkManager networkManager;
 
         private string ipAddress = "127.0.0.1";
+        private Rect sizeRect;
 
         private void Awake()
         {
             networkManager = GetComponent<NetworkManager>();
             ipAddress = PlayerPrefs.GetString("ClientIPAddressToConnectTo", "127.0.0.1");
+            sizeRect = new Rect(position.x, position.y, 300, 10000);
         }
 
         private void OnGUI()
         {
-            GUILayout.BeginArea(new Rect(position.x, position.y, 300, 10000));
+            GUILayout.BeginArea(sizeRect);
 
             if (!NetworkServer.IsActive && !NetworkClient.IsConnected)
             {
