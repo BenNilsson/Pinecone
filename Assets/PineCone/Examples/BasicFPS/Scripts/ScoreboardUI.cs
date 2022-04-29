@@ -1,36 +1,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreboardUI : MonoBehaviour
+namespace Pinecone.Examples.BasicFPS
 {
-    [SerializeField] private ScoreboardElement prefab;
-    [SerializeField] private Transform content;
-    public Dictionary<string, ScoreboardElement> scoreboardElements = new Dictionary<string, ScoreboardElement>();
-    [SerializeField] private CanvasGroup canvasGroup;
-
-    public void AddPlayer(Player player)
+    public class ScoreboardUI : MonoBehaviour
     {
-        ScoreboardElement scoreboardElement = Instantiate(prefab, content);
-        scoreboardElement.SetPlayer(player);
-        scoreboardElements.Add(player.playerColor.colorName, scoreboardElement);
-    }
+        [SerializeField] private ScoreboardElement prefab;
+        [SerializeField] private Transform content;
+        public Dictionary<string, ScoreboardElement> scoreboardElements = new Dictionary<string, ScoreboardElement>();
+        [SerializeField] private CanvasGroup canvasGroup;
 
-    public void RemovePlayer(string colorName)
-    {
-        if (scoreboardElements.TryGetValue(colorName, out ScoreboardElement element))
+        public void AddPlayer(Player player)
         {
-            Destroy(element.gameObject);
-            scoreboardElements.Remove(colorName);
+            ScoreboardElement scoreboardElement = Instantiate(prefab, content);
+            scoreboardElement.SetPlayer(player);
+            scoreboardElements.Add(player.playerColor.colorName, scoreboardElement);
         }
-    }
 
-    public void Display()
-    {
-        canvasGroup.alpha = 1f;
-    }
+        public void RemovePlayer(string colorName)
+        {
+            if (scoreboardElements.TryGetValue(colorName, out ScoreboardElement element))
+            {
+                Destroy(element.gameObject);
+                scoreboardElements.Remove(colorName);
+            }
+        }
 
-    public void Hide()
-    {
-        canvasGroup.alpha = 0f;
+        public void Display()
+        {
+            canvasGroup.alpha = 1f;
+        }
+
+        public void Hide()
+        {
+            canvasGroup.alpha = 0f;
+        }
     }
 }

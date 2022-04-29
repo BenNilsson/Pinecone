@@ -1,14 +1,17 @@
 using UnityEngine;
 
-public class Speedpad : MonoBehaviour
+namespace Pinecone.Examples.BasicFPS
 {
-    [SerializeField] private float speedMultiplier = 10.0f;
-
-    private void OnTriggerEnter(Collider other)
+    public class Speedpad : MonoBehaviour
     {
-        if (!other.gameObject.name.Contains("FpsPlayer"))
-            return;
+        [SerializeField] private float speedMultiplier = 10.0f;
 
-        other.gameObject.GetComponent<PlayerController>()?.SetSpeedMultiplier(speedMultiplier);
+        private void OnTriggerEnter(Collider other)
+        {
+            if (!other.gameObject.name.Contains("FpsPlayer"))
+                return;
+
+            other.gameObject.GetComponent<PlayerController>()?.SetSpeedMultiplier(speedMultiplier);
+        }
     }
 }

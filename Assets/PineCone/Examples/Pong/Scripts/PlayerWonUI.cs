@@ -1,28 +1,31 @@
 using UnityEngine;
 using TMPro;
 
-public class PlayerWonUI : MonoBehaviour
+namespace Pinecone.Examples.Pong
 {
-    [SerializeField] TextMeshProUGUI winnerText;
-
-    private void OnEnable()
+    public class PlayerWonUI : MonoBehaviour
     {
-        PongNetworkManager.OnPlayerWon += PlayerWon;
-    }
+        [SerializeField] TextMeshProUGUI winnerText;
 
-    private void OnDisable()
-    {
-        PongNetworkManager.OnPlayerWon -= PlayerWon;
-    }
+        private void OnEnable()
+        {
+            PongNetworkManager.OnPlayerWon += PlayerWon;
+        }
 
-    private void PlayerWon(int player)
-    {
-        winnerText.text = $"Player {player + 1} Won!";
-        Invoke(nameof(ResetText), 1.5f);
-    }
+        private void OnDisable()
+        {
+            PongNetworkManager.OnPlayerWon -= PlayerWon;
+        }
 
-    private void ResetText()
-    {
-        winnerText.text = "";
+        private void PlayerWon(int player)
+        {
+            winnerText.text = $"Player {player + 1} Won!";
+            Invoke(nameof(ResetText), 1.5f);
+        }
+
+        private void ResetText()
+        {
+            winnerText.text = "";
+        }
     }
 }

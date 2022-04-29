@@ -1,10 +1,13 @@
 using UnityEngine;
 
-public class MouseOnStart : MonoBehaviour
+namespace Pinecone.Examples.BasicFPS
 {
-    private void Start()
+    public class MouseOnStart : MonoBehaviour
     {
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Confined;
+        private void Start()
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
     }
 }

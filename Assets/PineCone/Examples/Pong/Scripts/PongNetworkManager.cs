@@ -1,75 +1,77 @@
 using UnityEngine;
-using Pinecone;
 using System;
 
-public partial class PongNetworkManager : NetworkManager
+namespace Pinecone.Examples.Pong
 {
-    public static event Action<int> OnPlayerWon;
-    public static event Action OnGoalScored;
-
-    public static void TriggerPlayerWon(int player) { OnPlayerWon?.Invoke(player); }
-    public static void TriggerGoalScored() { OnGoalScored?.Invoke(); }
-
-
-    [SerializeField] private GameObject ball;
-    private Ball spawnedBall;
-
-    [SerializeField] private Vector3[] spawnPositions;
-
-    // Required to send RPC and spawn objects on the network.
-    [SerializeField] public GameLogic gameLogicNetworkBehaviour;
-
-    public int ScorePlayer1;
-    public int ScorePlayer2;
-
-    private GameObject player1;
-    private GameObject player2;
-
-    public override void OnServerStart()
+    public partial class PongNetworkManager : NetworkManager
     {
-        base.OnServerStart();
+        public static event Action<int> OnPlayerWon;
+        public static event Action OnGoalScored;
 
-        // Set up here since the object is not spawned in. OnStart does not get called otherwise.
-        gameLogicNetworkBehaviour.gameObject.GetComponent<NetworkObject>().OnStart();
-    }
+        public static void TriggerPlayerWon(int player) { OnPlayerWon?.Invoke(player); }
+        public static void TriggerGoalScored() { OnGoalScored?.Invoke(); }
 
-    public override GameObject SpawnPlayer()
-    {
-        GameObject player = null;
-        if (player1 == null)
+
+        [SerializeField] private GameObject ball;
+        private Ball spawnedBall;
+
+        [SerializeField] private Vector3[] spawnPositions;
+
+        // Required to send RPC and spawn objects on the network.
+        [SerializeField] public GameLogic gameLogicNetworkBehaviour;
+
+        public int ScorePlayer1;
+        public int ScorePlayer2;
+
+        private GameObject player1;
+        private GameObject player2;
+
+        public override void OnServerStart()
         {
-            player = Instantiate(spawnableObjects[playerGameObject], spawnPositions[0], Quaternion.identity);
-            player1 = player;
+            base.OnServerStart();
+
+            // Set up here since the object is not spawned in. OnStart does not get called otherwise.
+            gameLogicNetworkBehaviour.gameObject.GetComponent<NetworkObject>().OnStart();
         }
-        else if (player2 == null)
+
+        public override GameObject SpawnPlayer()
         {
-            player = Instantiate(spawnableObjects[playerGameObject], spawnPositions[1], Quaternion.identity);
-            player2 = player;
+            GameObject player = null;
+            if (player1 == null)
+            {
+                player = Instantiate(spawnableObjects[playerGameObject], spawnPositions[0], Quaternion.identity);
+                player1 = player;
+            }
+            else if (player2 == null)
+            {
+                player = Instantiate(spawnableObjects[playerGameObject], spawnPositions[1], Quaternion.identity);
+                player2 = player;
+            }
+
+            return player;
         }
-        
-        return player;
-    }
 
-    private void ServerSpawnBall()
-    {
-        spawnedBall = Instantiate(ball, Vector3.zero, Quaternion.identity).GetComponent<Ball>();
-        gameLogicNetworkBehaviour.spawnedBall = spawnedBall;
-        gameLogicNetworkBehaviour.ServerResetGame();
-
-        NetworkServer.Spawn(spawnedBall.gameObject, gameLogicNetworkBehaviour, true);
-    }
-
-    public override void ClientConnectedServer(int connectionId)
-    {
-        if (NetworkManager.NumberOfPlayers == 2)
-            ServerSpawnBall();
-    }
-
-    public override void ClientDisconnectedServer(int connectionId)
-    {
-        if (spawnedBall != null)
+        private void ServerSpawnBall()
         {
-            NetworkServer.Destroy(spawnedBall.gameObject, gameLogicNetworkBehaviour, true);
+            spawnedBall = Instantiate(ball, Vector3.zero, Quaternion.identity).GetComponent<Ball>();
+            gameLogicNetworkBehaviour.spawnedBall = spawnedBall;
+            gameLogicNetworkBehaviour.ServerResetGame();
+
+            NetworkServer.Spawn(spawnedBall.gameObject, gameLogicNetworkBehaviour, true);
+        }
+
+        public override void ClientConnectedServer(int connectionId)
+        {
+            if (NetworkManager.NumberOfPlayers == 2)
+                ServerSpawnBall();
+        }
+
+        public override void ClientDisconnectedServer(int connectionId)
+        {
+            if (spawnedBall != null)
+            {
+                NetworkServer.Destroy(spawnedBall.gameObject, gameLogicNetworkBehaviour, true);
+            }
         }
     }
 }

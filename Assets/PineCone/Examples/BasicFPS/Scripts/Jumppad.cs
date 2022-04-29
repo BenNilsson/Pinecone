@@ -1,14 +1,17 @@
 using UnityEngine;
 
-public class Jumppad : MonoBehaviour
+namespace Pinecone.Examples.BasicFPS
 {
-    [SerializeField] private float jumpPower = 20;
-    
-    private void OnTriggerEnter(Collider other)
+    public class Jumppad : MonoBehaviour
     {
-        if (!other.gameObject.name.Contains("FpsPlayer"))
-            return;
+        [SerializeField] private float jumpPower = 20;
 
-        other.gameObject.GetComponent<PlayerController>()?.AddJumpHeight(jumpPower);
+        private void OnTriggerEnter(Collider other)
+        {
+            if (!other.gameObject.name.Contains("FpsPlayer"))
+                return;
+
+            other.gameObject.GetComponent<PlayerController>()?.AddJumpHeight(jumpPower);
+        }
     }
 }

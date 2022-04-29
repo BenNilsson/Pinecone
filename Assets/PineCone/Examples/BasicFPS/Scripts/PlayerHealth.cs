@@ -1,45 +1,47 @@
-using UnityEngine;
-using Pinecone;
 
-public partial class PlayerHealth : NetworkBehaviour
+
+namespace Pinecone.Examples.BasicFPS
 {
-    public int maxHealth = 100;
-    private Player player;
-    
-    [NetworkSync]
-    private int health;
-
-    public bool Dead;
-
-    public override void OnStart()
+    public partial class PlayerHealth : NetworkBehaviour
     {
-        healthGenerated = maxHealth;
-        player = GetComponent<Player>();
-    }
+        public int maxHealth = 100;
+        private Player player;
 
-    public void TakeDamage(int damage, string killedById)
-    {
-        if (!NetworkServer.IsActive)
-            return;
+        [NetworkSync]
+        private int health;
 
-        healthGenerated -= damage;
-        if (health <= 0 && !Dead)
+        public bool Dead;
+
+        public override void OnStart()
         {
-            Dead = true;
-
-            player.DeathsGenerated++;
-            Generated.RpcDie(this, killedById);
+            healthGenerated = maxHealth;
+            player = GetComponent<Player>();
         }
-    }
 
-    [NetworkRPC]
-    public void RpcDie(string killedById)
-    {
-        player.Die(killedById);
-    }
+        public void TakeDamage(int damage, string killedById)
+        {
+            if (!NetworkServer.IsActive)
+                return;
 
-    public void SetHealth(int maxHealth)
-    {
-        healthGenerated = maxHealth;
+            healthGenerated -= damage;
+            if (health <= 0 && !Dead)
+            {
+                Dead = true;
+
+                player.DeathsGenerated++;
+                Generated.RpcDie(this, killedById);
+            }
+        }
+
+        [NetworkRPC]
+        public void RpcDie(string killedById)
+        {
+            player.Die(killedById);
+        }
+
+        public void SetHealth(int maxHealth)
+        {
+            healthGenerated = maxHealth;
+        }
     }
 }
