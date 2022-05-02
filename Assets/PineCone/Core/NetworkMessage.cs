@@ -146,7 +146,7 @@ namespace Pinecone
         }
         #endregion
 
-        #region Bool - DONE
+        #region Bool
         public NetworkMessage AddBool(bool value) { return Add(value); }
         public NetworkMessage Add(bool value)
         {
@@ -173,7 +173,7 @@ namespace Pinecone
 
         #endregion
 
-        #region Int - DONE
+        #region Int
         public NetworkMessage AddInt(int value) { return Add(value); }
         public NetworkMessage Add(int value)
         {
@@ -201,7 +201,7 @@ namespace Pinecone
         }
         #endregion
 
-        #region Short - DONE
+        #region Short
         public NetworkMessage AddShort(short value) { return Add(value); }
         public NetworkMessage Add(short value)
         {
@@ -229,7 +229,7 @@ namespace Pinecone
         }
         #endregion
 
-        #region Strings - DONE
+        #region Strings
         public NetworkMessage AddString(string value) => Add(value);
         public NetworkMessage Add(string value)
         {
@@ -260,7 +260,7 @@ namespace Pinecone
 
         #endregion
 
-        #region Floats - DONE
+        #region Floats
         public NetworkMessage AddFloat(float value) => Add(value);
         public NetworkMessage Add(float value)
         {
@@ -289,7 +289,7 @@ namespace Pinecone
 
         #endregion
 
-        #region Double - DONE
+        #region Double
         public NetworkMessage AddDouble(double value) => Add(value);
         public NetworkMessage Add(double value)
         {
@@ -320,7 +320,7 @@ namespace Pinecone
 
         // =============== UNITY TYPES
 
-        #region Vector3 - DONE
+        #region Vector3
         public NetworkMessage AddVector3(Vector3 value) => Add(value);
         public NetworkMessage Add(Vector3 value)
         {
@@ -351,7 +351,7 @@ namespace Pinecone
         }
         #endregion
 
-        #region Vector2 - DONE
+        #region Vector2
         public NetworkMessage AddVector2(Vector2 value) => Add(value);
         public NetworkMessage Add(Vector2 value)
         {
@@ -380,7 +380,7 @@ namespace Pinecone
         }
         #endregion
 
-        #region Quaternion - DONE
+        #region Quaternion
         public NetworkMessage AddQuaternion(Quaternion value) => Add(value);
         public NetworkMessage Add(Quaternion value)
         {
@@ -413,7 +413,7 @@ namespace Pinecone
         }
         #endregion
 
-        #region Color - DONE
+        #region Color
         public NetworkMessage AddColor(Color32 value) => Add(value);
         public NetworkMessage Add(Color32 value)
         {
@@ -446,7 +446,7 @@ namespace Pinecone
         }
         #endregion
 
-        #region Custom Animation Info - DONE
+        #region Custom Animation Info
         public NetworkMessage AddAnimInfo(AnimationInfo value) => Add(value);
         public NetworkMessage Add(AnimationInfo value)
         {
