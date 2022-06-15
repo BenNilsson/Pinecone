@@ -13,7 +13,7 @@
 
 <p>Pinecone Networking is a lightweight C# networking library designed for use in multiplayer games, made for the Unity game engine.</p>
 
-<i>Pinecone is currently re-ceiving a re-work in a private repo. This repo showcases my final state of my FYP</i>
+<i>Pinecone is currently receiving a rework in a private repo. This repo showcases my final state of my FYP</i>
 
 # Architecture
 Pinecone is set up with the Server & Client in one project in order to speed up the development process and productivity.
