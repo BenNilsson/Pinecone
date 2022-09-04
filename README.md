@@ -9,6 +9,8 @@
 
 <h1 align="center">Pinecone Networking</h1>
 
+<p>This project is currently under re-construction in a private repo. It will be available once it has reached a presentable state</p>
+
 <p>Pinecone Networking is a lightweight C# networking library designed for use in multiplayer games, made for the Unity game engine.</p>
 
 <i>Pinecone is currently receiving a rework in a private repo. This repo showcases the final state of my FYP</i>
