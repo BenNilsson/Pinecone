@@ -1,3 +1,5 @@
+<p>This project is currently under re-construction in a private repo. It will be available once it has reached a presentable state</p>
+
 # Pinecone
 [![Documentation](https://img.shields.io/badge/docs-brightgreen.svg)](https://ben-nilsson.gitbook.io/pinecone-documentation/)
 
@@ -8,8 +10,6 @@
 </div>
 
 <h1 align="center">Pinecone Networking</h1>
-
-<p>This project is currently under re-construction in a private repo. It will be available once it has reached a presentable state</p>
 
 <p>Pinecone Networking is a lightweight C# networking library designed for use in multiplayer games, made for the Unity game engine.</p>
 
